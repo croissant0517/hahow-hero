@@ -1,13 +1,24 @@
+import { useRouter } from "next/router";
 import Image from "next/image";
+
+import { HeroCardContainer } from "./HeroCard.style";
 
 import { Hero } from "../../../types";
 
 const HeroCard = ({ id, name, image }: Hero) => {
+  const router = useRouter();
+  const { heroId } = router.query;
+
   return (
-    <div>
-      <Image src={image} alt={name} width={200} height={200} />
+    <HeroCardContainer
+      style={{ borderColor: heroId === id ? "red" : "#ccc" }}
+      onClick={() => {
+        router.push(`/heroes/${id}`);
+      }}
+    >
+      <Image src={image} alt={name} width={200} height={200} priority />
       <h1>{name}</h1>
-    </div>
+    </HeroCardContainer>
   );
 };
 
