@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ButtonContainer = styled.button`
   cursor: pointer;
   border: 2px solid #ccc;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   padding: 1rem;
   overflow: hidden;
   transition: all 0.2s ease-in-out;

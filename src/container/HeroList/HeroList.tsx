@@ -1,8 +1,9 @@
-import { memo } from "react";
+import { memo, useEffect } from "react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 
 import HeroCard from "@/components/HeroCard/HeroCard";
+import Error from "@/components/Error/Error";
 
 import { url } from "@/service/api";
 
@@ -15,7 +16,13 @@ export const fetcher = (...args: Parameters<typeof fetch>) =>
 
 const HeroList = memo(function HeroList() {
   const { data, isLoading, error } = useSWR(url.heroes, fetcher);
-  console.log("HeroList", data);
+
+  useEffect(() => {
+    console.log("Render: HeroList");
+  });
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <Error />;
 
   return (
     <HeroListContainer>

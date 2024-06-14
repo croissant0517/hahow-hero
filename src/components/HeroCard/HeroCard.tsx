@@ -11,9 +11,12 @@ const HeroCard = ({ id, name, image }: Hero) => {
 
   return (
     <HeroCardContainer
-      style={{ borderColor: heroId === id ? "red" : "#ccc" }}
+      style={{
+        borderColor: heroId === id ? "red" : "#ccc",
+        color: heroId === id ? "red" : "#000",
+      }}
       onClick={() => {
-        router.push(`/heroes/${id}`);
+        router.push(`/heroes/${id}`, undefined, { scroll: false });
       }}
     >
       <Image src={image} alt={name} width={200} height={200} priority />
