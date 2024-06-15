@@ -17,10 +17,6 @@ export const fetcher = (...args: Parameters<typeof fetch>) =>
 const HeroList = memo(function HeroList() {
   const { data, isLoading, error } = useSWR(url.heroes, fetcher);
 
-  useEffect(() => {
-    console.log("Render: HeroList");
-  });
-
   if (isLoading) return <div>Loading...</div>;
   if (error) return <Error />;
 
