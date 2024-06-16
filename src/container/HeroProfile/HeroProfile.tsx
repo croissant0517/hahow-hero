@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 import useSWRMutation from "swr/mutation";
+import toast from "react-hot-toast";
 
 import Button from "@/components/Button/Button";
 
@@ -19,41 +20,37 @@ type HeroProfileProps = {
   heroId: string | string[] | undefined;
 };
 
-const updateProfile = async (url: string, { arg }: { arg: Profile }) => {
-  await fetch(url, {
+const updateProfile = async (
+  url: string,
+  { arg }: { arg: Profile }
+): Promise<unknown> => {
+  const result = await fetch(url, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(arg),
   });
+
+  const data = await result.text();
+
+  return data;
 };
 
 const HeroProfile = ({ profile, heroId }: HeroProfileProps) => {
   const [profileState, setProfileState] = useState(profile);
   const { trigger, isMutating } = useSWRMutation(
     heroId ? url.hero(heroId) : null,
-    updateProfile,
-    {
-      onSuccess: () => {
-        console.log("Success");
-      },
-    }
+    updateProfile
   );
-
-  console.log("profile", profile);
 
   const initTotal = useMemo(() => {
     return Object.values(profile).reduce((acc, value) => acc + value, 0);
   }, [profile]);
 
-  console.log("Init Total", initTotal);
-
   const total = useMemo(() => {
     return Object.values(profileState).reduce((acc, value) => acc + value, 0);
   }, [profileState]);
-
-  console.log("Total", total);
 
   useEffect(() => {
     setProfileState(profile);
@@ -71,6 +68,22 @@ const HeroProfile = ({ profile, heroId }: HeroProfileProps) => {
       ...prevState,
       [key]: Math.max((prevState[key] || 0) - 1, 0),
     }));
+  };
+
+  const handleSubmit = () => {
+    const promise = trigger(profileState);
+
+    toast.promise(promise, {
+      loading: "Loading",
+      success: (data) => {
+        if (data === "OK") {
+          return "儲存成功！";
+        } else {
+          throw new Error("儲存失敗！");
+        }
+      },
+      error: "儲存失敗！",
+    });
   };
 
   return (
@@ -104,9 +117,7 @@ const HeroProfile = ({ profile, heroId }: HeroProfileProps) => {
         <h3>剩餘點數: {initTotal - total}</h3>
 
         <Button
-          onClick={() => {
-            trigger(profileState);
-          }}
+          onClick={handleSubmit}
           disabled={total !== initTotal || isMutating}
         >
           儲存
