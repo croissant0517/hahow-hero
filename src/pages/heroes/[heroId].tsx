@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import toast from "react-hot-toast";
@@ -12,29 +13,37 @@ export const fetcher = (...args: Parameters<typeof fetch>) =>
   fetch(...args).then((res) => res.json());
 
 const HeroPage = () => {
-  let toastId: string;
+  const toastId = useRef<string | undefined>();
   const router = useRouter();
   const { heroId } = router.query;
-  const { data, error, isLoading } = useSWR<Profile>(
+  const { data, error, isLoading, isValidating } = useSWR<Profile>(
     heroId ? url.hero(heroId) : null,
     fetcher,
     {
       onSuccess: () => {
-        toastId = toast.success("英雄資料載入完成。", {
-          id: toastId,
+        toastId.current = toast.success("英雄資料載入完成。", {
+          id: toastId.current,
         });
       },
       onError: () => {
-        toastId = toast.error("載入英雄資料失敗。", {
-          id: toastId,
+        toastId.current = toast.error("載入英雄資料失敗。", {
+          id: toastId.current,
         });
       },
     }
   );
 
-  if (isLoading) {
-    toastId = toast.loading("載入英雄資料中...");
-  }
+  useEffect(() => {
+    if (isLoading || isValidating) {
+      toastId.current = toast.loading("載入英雄資料中...");
+    }
+  }, [isLoading, isValidating]);
+
+  useEffect(() => {
+    return () => {
+      toast.dismiss(toastId.current);
+    };
+  }, [heroId]);
 
   return !!data && <HeroProfile profile={data} heroId={heroId} />;
 };

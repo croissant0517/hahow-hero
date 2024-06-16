@@ -1,7 +1,6 @@
-import styled from "styled-components";
-import css from "styled-jsx/css";
+import styled, { css } from "styled-components";
 
-export const HeroCardContainer = styled.div`
+export const HeroCardContainer = styled.div<{ $isActive: boolean }>`
   cursor: pointer;
   border: 2px solid #ccc;
   border-radius: 1rem;
@@ -21,6 +20,15 @@ export const HeroCardContainer = styled.div`
   h2 {
     margin-top: 0.5rem;
   }
+
+  ${(props) => {
+    if (props.$isActive) {
+      return css`
+        border-color: red;
+        color: red;
+      `;
+    }
+  }}
 `;
 
 export const ImageSkeleton = styled.div`

@@ -19,10 +19,7 @@ const HeroCard = ({ id, name, image, isLoading }: HeroCardProps) => {
 
   return (
     <HeroCardContainer
-      style={{
-        borderColor: heroId === id ? "red" : "#ccc",
-        color: heroId === id ? "red" : "",
-      }}
+      $isActive={heroId === id}
       onClick={() => {
         router.push(`/heroes/${id}`, undefined, { scroll: false });
       }}
