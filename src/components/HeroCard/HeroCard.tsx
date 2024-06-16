@@ -35,7 +35,7 @@ const HeroCard = ({ id, name, image, isLoading }: HeroCardProps) => {
       ) : (
         <>
           <Image src={image} alt={name} width={200} height={200} priority />
-          <h1>{name}</h1>
+          <h2>{name}</h2>
         </>
       )}
     </HeroCardContainer>

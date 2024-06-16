@@ -8,6 +8,7 @@ export const HeroCardContainer = styled.div`
   padding: 1rem;
   overflow: hidden;
   transition: background-color 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
   text-align: center;
   &:hover {
     transform: scale(1.05);
@@ -15,6 +16,10 @@ export const HeroCardContainer = styled.div`
 
   img: {
     border-radius: 1rem;
+  }
+
+  h2 {
+    margin-top: 0.5rem;
   }
 `;
 

@@ -80,6 +80,7 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    font-family: monospace;
   }
 
   html,
@@ -109,7 +110,7 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
-  @keyframes loading {
+    @keyframes loading {
     0% {
       background-color: #ccc;
     }
