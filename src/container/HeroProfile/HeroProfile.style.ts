@@ -48,7 +48,7 @@ export const Controller = styled.div`
   flex-direction: column;
   gap: 1rem;
 
-  @media screen and (max-width: 300px) {
+  @media screen and (max-width: 350px) {
     width: 100%;
     align-self: center;
   }

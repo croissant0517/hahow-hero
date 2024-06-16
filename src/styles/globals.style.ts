@@ -108,4 +108,25 @@ export const GlobalStyle = createGlobalStyle`
       color-scheme: dark;
     }
   }
+
+  @keyframes loading {
+    0% {
+      background-color: #ccc;
+    }
+    20% {
+      background-color: #ddd;
+    }
+    40% {
+      background-color: #eee;
+    }
+    60% {
+      background-color: #ddd;
+    }
+    80% {
+      background-color: #ccc;
+    }
+    100% {
+      background-color: #ccc;
+    }
+  }
 `;

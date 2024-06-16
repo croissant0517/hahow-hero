@@ -17,14 +17,24 @@ export const fetcher = (...args: Parameters<typeof fetch>) =>
 const HeroList = memo(function HeroList() {
   const { data, isLoading, error } = useSWR(url.heroes, fetcher);
 
-  if (isLoading) return <div>Loading...</div>;
+  // if (isLoading) return <div>Loading...</div>;
   if (error) return <Error />;
 
   return (
     <HeroListContainer>
-      {data?.map((hero: Hero) => (
-        <HeroCard key={hero.id} {...hero} />
-      ))}
+      {isLoading ? (
+        <>
+          <HeroCard id={"1"} name={""} image={""} isLoading={isLoading} />
+          <HeroCard id={"2"} name={""} image={""} isLoading={isLoading} />
+          <HeroCard id={"3"} name={""} image={""} isLoading={isLoading} />
+          <HeroCard id={"4"} name={""} image={""} isLoading={isLoading} />
+        </>
+      ) : (
+        data?.map((hero: Hero) => (
+          <HeroCard key={hero.id} {...hero} isLoading={isLoading} />
+        ))
+      )}
+      {}
     </HeroListContainer>
   );
 });

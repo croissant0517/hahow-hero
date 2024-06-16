@@ -1,15 +1,23 @@
-const Error = () => {
+type ErrorProps = {
+  title?: string;
+  description?: string;
+};
+
+const Error = ({
+  title = "發生了一點問題",
+  description = "薩諾斯可能彈指了...",
+}: ErrorProps) => {
   return (
     <div>
-      <h1>發生了一點問題</h1>
-      <p>薩諾斯可能彈指了...</p>
+      <h1>{title}</h1>
+      <p>{description}</p>
       <button
         type="button"
         onClick={() => {
           location.href = "/heroes";
         }}
       >
-        Try again?
+        回到英雄列表
       </button>
     </div>
   );

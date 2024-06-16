@@ -1,11 +1,19 @@
 import { useRouter } from "next/router";
 import Image from "next/image";
 
-import { HeroCardContainer } from "./HeroCard.style";
+import {
+  HeroCardContainer,
+  ImageSkeleton,
+  NameSkeleton,
+} from "./HeroCard.style";
 
 import { Hero } from "../../../types";
 
-const HeroCard = ({ id, name, image }: Hero) => {
+type HeroCardProps = Hero & {
+  isLoading: boolean;
+};
+
+const HeroCard = ({ id, name, image, isLoading }: HeroCardProps) => {
   const router = useRouter();
   const { heroId } = router.query;
 
@@ -19,8 +27,17 @@ const HeroCard = ({ id, name, image }: Hero) => {
         router.push(`/heroes/${id}`, undefined, { scroll: false });
       }}
     >
-      <Image src={image} alt={name} width={200} height={200} priority />
-      <h1>{name}</h1>
+      {isLoading ? (
+        <>
+          <ImageSkeleton />
+          <NameSkeleton />
+        </>
+      ) : (
+        <>
+          <Image src={image} alt={name} width={200} height={200} priority />
+          <h1>{name}</h1>
+        </>
+      )}
     </HeroCardContainer>
   );
 };

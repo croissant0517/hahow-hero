@@ -20,6 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
             success: {
               duration: 1000,
             },
+            position: "bottom-center",
           }}
         />
       </Layout>
