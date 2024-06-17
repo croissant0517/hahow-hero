@@ -1,10 +1,9 @@
 import { useRouter } from "next/router";
 
 const Index = () => {
-  const router = useRouter();
   return (
     <div>
-      <h1>Heroes</h1>
+      <h1>請選擇一名英雄</h1>
     </div>
   );
 };
