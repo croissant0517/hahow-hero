@@ -52,10 +52,6 @@ const HeroProfile = ({ profile, heroId }: HeroProfileProps) => {
     return Object.values(profileState).reduce((acc, value) => acc + value, 0);
   }, [profileState]);
 
-  useEffect(() => {
-    setProfileState(profile);
-  }, [profile]);
-
   const handleIncrement = (key: keyof Profile) => {
     setProfileState((prevState) => ({
       ...prevState,
@@ -85,6 +81,10 @@ const HeroProfile = ({ profile, heroId }: HeroProfileProps) => {
       error: "儲存失敗！",
     });
   };
+
+  useEffect(() => {
+    setProfileState(profile);
+  }, [profile]);
 
   return (
     <HeroProfileContainer>

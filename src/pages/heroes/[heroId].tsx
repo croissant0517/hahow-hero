@@ -20,6 +20,7 @@ const HeroPage = () => {
     heroId ? url.hero(heroId) : null,
     fetcher,
     {
+      dedupingInterval: 0,
       onSuccess: () => {
         toastId.current = toast.success("英雄資料載入完成。", {
           id: toastId.current,
@@ -39,6 +40,7 @@ const HeroPage = () => {
     }
   }, [isLoading, isValidating]);
 
+  // 當ID改變時，清除舊的toast
   useEffect(() => {
     return () => {
       toast.dismiss(toastId.current);
