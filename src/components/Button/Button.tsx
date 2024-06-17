@@ -1,4 +1,4 @@
-import { ButtonContainer } from "./Buttonn.style";
+import { ButtonContainer } from "./Button.style";
 
 type ButtonProps = {
   children: React.ReactNode;
