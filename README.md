@@ -79,6 +79,19 @@ $ npm start (or using yarn instead)
 │       └── globals.style.ts
 ```
 
+### 寫註解的原則 （為個人開發上的想法，但此專案只有遇到第一點）
+
+1. 盡可能試著想像別人來看這份 code 的時候，在沒有註解的情況下哪些地方可能會讓人不清楚的地方來添加註解解釋其行為
+2. 一些複雜的邏輯或算法，註解可以幫助其他工程師了解這段程式碼的行為
+3. 開發中遇到的一些代辦事項，可能後續會進行修正的程式碼
+
+### 遇到的困難
+
+1. 思考如何在切換 profile 頁面時，不渲染 HeroList，一開始是打算在 HeroList 元件內判斷網址上的`heroId`，接著在 map 時，判斷卡片 id 是否與`heroId`相同，並傳入一個`isActive`給 HeroCard 判斷，但這麼做會使 HeroList 會了取得網址上參數而渲染，最後解法是將判斷移至 HeroCard 內，讓卡片自己知道自己是否被選中
+2. 有幾個看文件時的疑惑，藉由在 slack 群組提問得到解答
+3. 對 useSwr 的緩存機制不熟悉，一開始有踩了一些坑，後續藉由閱讀文件來一步步釐清
+4. 第一次使用 react-hot-toast，對於 api 及使用方式較不熟悉，同樣也藉由仔細閱讀文件，對其使用方式有大致的了解
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
