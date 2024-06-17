@@ -4,10 +4,11 @@ export const ButtonContainer = styled.button`
   cursor: pointer;
   border: 2px solid #ccc;
   border-radius: 0.5rem;
-  padding: 1rem;
+  padding: 2rem;
   overflow: hidden;
   transition: all 0.2s ease-in-out;
   text-align: center;
+  font-size: 1.5rem;
 
   &:hover {
     transform: scale(1.01);
@@ -16,5 +17,6 @@ export const ButtonContainer = styled.button`
   &:disabled {
     cursor: not-allowed;
     background-color: #ccc;
+    color: #fff;
   }
 `;
