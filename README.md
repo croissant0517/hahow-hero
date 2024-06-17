@@ -4,6 +4,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 專案連結：[https://hahow-hero-pi.vercel.app/heroes](https://hahow-hero-pi.vercel.app/heroes)
 
+![](https://github.com/croissant0517/hahow-hero/blob/main/assets/hahow-hero.gif)
+
 ## 如何執行
 
 ```bash
@@ -14,16 +16,66 @@ $ npm run build
 $ npm start (or using yarn instead)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+在瀏覽器中打開 [http://localhost:3000](http://localhost:3000) 來查看結果
 
-## Learn More
+## 功能簡介
 
-To learn more about Next.js, take a look at the following resources:
+- Hero List Page `/heroes`
+  展示各英雄卡片
+- Hero Profile Page `/heroes/:heroId`
+  英雄能力值頁面，可查看、編輯、儲存英雄能力值
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 使用技術及第三方套件
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- create-next-app - 建立專案項目環境
+- [React](https://react.dev/) - Function Components + Hooks，建立靈活且可重用的 UI 組件
+- [Styled Components](https://styled-components.com/) - CSS-in-JS library，將 CSS 樣式直接與組件結合，提高開發效率並保持代碼的整潔
+- [SWR]("https://swr.vercel.app/) - 用於獲取 api 資料。有資料緩存、自動重新連接和焦點追蹤等功能，能夠解決多分頁資料同步的問題
+- [React-hot-toast](https://react-hot-toast.com/) - 用於實現 Toast UI 的輕量級庫，向用戶展示網站的當前狀態或者 API 的回應狀況
+- [Vercel](https://vercel.com/) - 部署及托管網站
+
+## 專案架構
+
+```
+├── src
+// 共用元件
+│   ├── components
+│   │   ├── Button
+│   │   │   ├── Button.tsx
+│   │   │   └── Button.style.ts
+│   │   ├── Error
+│   │   │   ├── Error.tsx
+│   │   │   └── Error.style.ts
+│   │   ├── ErrorBoundary
+│   │   │   └── ErrorBoundary.jsx
+│   │   ├── HeroCard
+│   │   │   ├── HeroCard.style.ts
+│   │   │   └── HeroCard.tsx
+│   │   └── Layout
+│   │       ├── Layout.style.ts
+│   │       └── Layout.tsx
+// 頁面的主要功能區塊
+│   ├── container
+│   │   ├── HeroList
+│   │   │   ├── HeroList.style.ts
+│   │   │   └── HeroList.tsx
+│   │   └── HeroProfile
+│   │       ├── HeroProfile.style.ts
+│   │       └── HeroProfile.tsx
+// 所有的頁面，Next.js 會根據這個目錄中的檔案結構來自動生成路由。
+│   ├── pages
+│   │   ├── _app.tsx
+│   │   ├── _document.tsx
+│   │   ├── heroes
+│   │   │   ├── [heroId].tsx
+│   │   │   └── index.tsx
+│   │   └── index.tsx
+│   ├── service
+│   │   └── api.ts
+│   └── styles
+│       ├── heroes.style.ts
+│       └── globals.style.ts
+```
 
 ## Deploy on Vercel
 

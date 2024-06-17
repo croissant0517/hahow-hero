@@ -1,5 +1,4 @@
-import { memo, useEffect } from "react";
-import { useRouter } from "next/router";
+import { memo } from "react";
 import useSWR from "swr";
 
 import HeroCard from "@/components/HeroCard/HeroCard";
@@ -33,7 +32,6 @@ const HeroList = memo(function HeroList() {
           <HeroCard key={hero.id} {...hero} isLoading={isLoading} />
         ))
       )}
-      {}
     </HeroListContainer>
   );
 });

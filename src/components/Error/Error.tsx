@@ -1,3 +1,7 @@
+import Button from "../Button/Button";
+
+import { ErrorContainer } from "./Error.style";
+
 type ErrorProps = {
   title?: string;
   description?: string;
@@ -8,18 +12,17 @@ const Error = ({
   description = "薩諾斯可能彈指了...",
 }: ErrorProps) => {
   return (
-    <div>
+    <ErrorContainer>
       <h1>{title}</h1>
       <p>{description}</p>
-      <button
-        type="button"
+      <Button
         onClick={() => {
           location.href = "/heroes";
         }}
       >
         回到英雄列表
-      </button>
-    </div>
+      </Button>
+    </ErrorContainer>
   );
 };
 
