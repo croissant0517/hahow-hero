@@ -30,7 +30,7 @@ $ npm start (or using yarn instead)
 - create-next-app - 建立專案項目環境
 - [React](https://react.dev/) - Function Components + Hooks，建立靈活且可重用的 UI 元件
 - [Styled Components](https://styled-components.com/) - CSS-in-JS library，將 CSS 樣式直接與組件結合，提高開發效率
-- [SWR]("https://swr.vercel.app) - 用於獲取 api 資料。有資料緩存、自動重新連接和焦點追蹤等功能，能夠解決多分頁資料同步的問題
+- [Swr]("https://swr.vercel.app) - 用於獲取 api 資料。有資料緩存、自動重新連接和焦點追蹤等功能，能夠解決多分頁資料同步的問題
 - [React-hot-toast](https://react-hot-toast.com/) - 用於實現 Toast UI 的輕量級元件庫，向用戶展示網站的當前狀態或者 API 的回應狀況
 - [Vercel](https://vercel.com/) - 部署及托管網站
 
@@ -70,8 +70,10 @@ $ npm start (or using yarn instead)
 │   │   │   ├── [heroId].tsx
 │   │   │   └── index.tsx
 │   │   └── index.tsx
+// api endpoint
 │   ├── service
 │   │   └── api.ts
+// 全域及頁面層級樣式
 │   └── styles
 │       ├── heroes.style.ts
 │       └── globals.style.ts
