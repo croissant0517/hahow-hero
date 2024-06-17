@@ -20,6 +20,7 @@ const HeroPage = () => {
     heroId ? url.hero(heroId) : null,
     fetcher,
     {
+      // 這邊設定 dedupingInterval 為 0，讓每次都重新發送請求
       dedupingInterval: 0,
       onSuccess: () => {
         toastId.current = toast.success("英雄資料載入完成。", {
