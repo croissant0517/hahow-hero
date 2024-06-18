@@ -28,7 +28,7 @@ $ npm start (or using yarn instead)
 ### 使用技術及第三方套件
 
 - create-next-app - 建立專案項目環境
-- [React](https://react.dev/) - Function Components + Hooks，建立靈活且可重用的 UI 元件
+- [React](https://react.dev/) - Function Components，建立靈活且可重用的 UI 元件，並透過React.memo、useMemo來增進效能
 - [Styled Components](https://styled-components.com/) - CSS-in-JS library，將 CSS 樣式直接與組件結合，提高開發效率
 - [Swr]("https://swr.vercel.app) - 用於獲取 api 資料。有資料緩存、自動重新連接和焦點追蹤等功能，能夠解決多分頁資料同步的問題
 - [React-hot-toast](https://react-hot-toast.com/) - 用於實現 Toast UI 的輕量級元件庫，向用戶展示網站的當前狀態或者 API 的回應狀況
@@ -87,7 +87,7 @@ $ npm start (or using yarn instead)
 
 ### 遇到的困難
 
-1. 思考如何在切換 profile 頁面時，不渲染 HeroList，一開始是打算在 HeroList 元件內判斷網址上的`heroId`，接著在 map 時，判斷卡片 id 是否與`heroId`相同，並傳入一個`isActive`給 HeroCard 判斷，但這麼做會使 HeroList 會了取得網址上參數而渲染，最後解法是將判斷移至 HeroCard 內，讓卡片自己知道自己是否被選中
+1. 思考如何在切換 profile 頁面時，不渲染 HeroList，一開始是打算在 HeroList 元件內判斷網址上的`heroId`，接著在 map 時，判斷卡片 id 是否與`heroId`相同，並傳入一個`isActive`給 HeroCard 判斷，但這麼做會使 HeroList 為了取得網址上參數而渲染，最後解法是將判斷移至 HeroCard 內，讓卡片自己知道自己是否被選中
 2. 有幾個看文件時的疑惑，藉由在 slack 群組提問得到解答
 3. 對 useSwr 的緩存機制不熟悉，一開始有踩了一些坑，後續藉由閱讀文件來一步步釐清
 4. 第一次使用 react-hot-toast，對於 api 及使用方式較不熟悉，同樣也藉由仔細閱讀文件，對其使用方式有大致的了解
